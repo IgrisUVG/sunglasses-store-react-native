@@ -16,13 +16,6 @@ export default function Index() {
 }
 
 
-// WEB: index.html     folder/index.html    admin/index.html
-// React: Router ==> Browser Router (based on History API => pop/push) 
-//.   ==> <Screen />
-// Next.js: file based /app page.tsx
-//                     folder/page.tsx      admin/page.tsx        _layout.tsx
-// Expo: file based
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
