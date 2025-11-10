@@ -1,9 +1,25 @@
+import ProductsContext from '@/app/types/product';
+import { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function Screen() {
+  const products = useContext(ProductsContext);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Categories</Text>
+      {Object.entries(products.reduce((acc, i) => {
+        if (i.info.brand in acc) {
+          return acc;
+        }
+
+        return {
+          ...acc,
+          [i.info.brand]: "",
+        }
+      }, {})).map(([k,]) => <Text
+        style={styles.text}
+        key={`brand-${k.replaceAll(" ", "-").toLowerCase()}`}
+      >{k}</Text>)}
     </View>
   );
 }
