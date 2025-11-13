@@ -1,6 +1,7 @@
+import { Button, ButtonGroup, ButtonText } from "@/components/ui/button";
 import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   const [isAddedToCart, setAddedToCart] = useState(false);
@@ -10,10 +11,18 @@ export default function Index() {
     <Text style={styles.text}>This is a page of product {productId}</Text>
     {isAddedToCart
       ? <View style={styles.buttonsContainer}>
-          <Button title="Remove from cart" onPress={() => setAddedToCart(false)}></Button>
-          <Button title="Go to cart" onPress={() => router.navigate("/(tabs)/cart")} />
-        </View>
-      : <Button title="Add to the cart" onPress={() => setAddedToCart(true)} />
+        <ButtonGroup>
+          <Button variant="outline" action="negative" onPress={() => setAddedToCart(false)}>
+            <ButtonText>Remove from cart</ButtonText>
+          </Button>
+          <Button onPress={() => router.navigate("/(tabs)/cart")}>
+            <ButtonText variant="solid" action="primary">Go to cart</ButtonText>
+          </Button>
+        </ButtonGroup>
+      </View>
+      : <Button variant="solid" action="primary" onPress={() => setAddedToCart(true)}>
+        <ButtonText>Add to the cart</ButtonText>
+      </Button>
     }
   </View>;
 }
@@ -21,7 +30,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    backgroundColor: "#000",
+    backgroundColor: "#fff",
     flex: 1,
     gap: 12,
     justifyContent: 'center',
